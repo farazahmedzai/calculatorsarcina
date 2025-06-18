@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "node build-deploy.js"
+  command = "node build-fast-react.js"
 
 [build.environment]
   NODE_VERSION = "20"
