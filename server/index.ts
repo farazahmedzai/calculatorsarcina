@@ -47,8 +47,12 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // Force production mode to serve working static files
-  serveStatic(app);
+  // In development, setup Vite for React app
+  if (process.env.NODE_ENV !== "production") {
+    await setupVite(app, server);
+  } else {
+    serveStatic(app);
+  }
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client.
