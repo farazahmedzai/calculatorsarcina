@@ -1,4 +1,31 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+
+// This script is designed for Replit deployment system
+// It creates production-ready files without relying on Vite
+
+import { execSync } from 'child_process';
+import fs from 'fs';
+
+console.log('Building for Replit deployment...');
+
+// Set production environment
+process.env.NODE_ENV = 'production';
+
+try {
+  // Clean and create directories
+  execSync('rm -rf dist/', { stdio: 'inherit' });
+  execSync('mkdir -p dist/public', { stdio: 'inherit' });
+  
+  // Build backend only (fast and reliable)
+  console.log('Building Express server...');
+  execSync('npx esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist --minify', { 
+    stdio: 'inherit' 
+  });
+  
+  // Create deployment-ready static files
+  console.log('Creating static assets...');
+  
+  const deployHtml = `<!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8">
@@ -131,4 +158,41 @@
       .catch(() => console.log('Static mode'));
   </script>
 </body>
-</html>
+</html>`;
+
+  // Create server/public directory for the server to find files
+  execSync('mkdir -p server/public', { stdio: 'inherit' });
+  
+  // Write files to both locations
+  fs.writeFileSync('dist/public/index.html', deployHtml);
+  fs.writeFileSync('server/public/index.html', deployHtml);
+  
+  // SEO files
+  const robotsTxt = `User-agent: *\nAllow: /\nSitemap: https://calculatorsarcina.com/sitemap.xml`;
+  fs.writeFileSync('dist/public/robots.txt', robotsTxt);
+  fs.writeFileSync('server/public/robots.txt', robotsTxt);
+  
+  const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>https://calculatorsarcina.com/</loc><priority>1.0</priority></url>
+<url><loc>https://calculatorsarcina.com/calculator-sarcina</loc><priority>0.9</priority></url>
+<url><loc>https://calculatorsarcina.com/planificare-pensie</loc><priority>0.9</priority></url>
+</urlset>`;
+  fs.writeFileSync('dist/public/sitemap.xml', sitemapXml);
+  fs.writeFileSync('server/public/sitemap.xml', sitemapXml);
+
+  // Empty favicon
+  fs.writeFileSync('dist/public/favicon.ico', '');
+  fs.writeFileSync('server/public/favicon.ico', '');
+  
+  console.log('Deployment build completed successfully!');
+  console.log('Files created:');
+  console.log('- dist/index.js (Express server)');
+  console.log('- dist/public/index.html (Static homepage)');
+  console.log('- dist/public/robots.txt');
+  console.log('- dist/public/sitemap.xml');
+  
+} catch (error) {
+  console.error('Deployment build failed:', error.message);
+  process.exit(1);
+}
