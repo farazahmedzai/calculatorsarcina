@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "node build-working.js"
+  command = "node build-react-fixed.js"
 
 [build.environment]
   NODE_VERSION = "20"
