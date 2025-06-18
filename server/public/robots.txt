@@ -1,113 +1,15 @@
 User-agent: *
 Allow: /
 
-# Sitemap locations
-Sitemap: https://calculatorsarcina.com/sitemap.xml
-Sitemap: https://calculatorsarcina.com/sitemap-images.xml
-Sitemap: https://calculatorsarcina.com/sitemap-news.xml
-
-# Priority pages for crawling
-Allow: /calculator-sarcina
-Allow: /planificare-pensie
-Allow: /tipuri-pensii
-Allow: /legislatie-resurse
-Allow: /blog
-Allow: /blog/*
-
-# Essential static assets
-Allow: /assets/
-Allow: /favicon.ico
-Allow: /manifest.json
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.webp$
-Allow: /*.svg$
-Allow: /*.woff$
-Allow: /*.woff2$
-
-# API endpoints for structured data
-Allow: /api/blog-posts
-Allow: /api/sitemap
-
-# Disallow private and development files
-Disallow: /src/
-Disallow: /server/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /.env*
-Disallow: /package*.json
-Disallow: /tsconfig.json
-Disallow: /vite.config.ts
-Disallow: /tailwind.config.ts
-Disallow: /drizzle.config.ts
-Disallow: /*.tsx$
-Disallow: /*.ts$
-Disallow: /*.map$
-Disallow: /admin
-Disallow: /private
-Disallow: /test
-Disallow: /debug
-
-# Admin and internal paths
-Disallow: /wp-admin/
-Disallow: /wp-includes/
-Disallow: /wp-content/
-Disallow: /admin/
-Disallow: /login
-Disallow: /register
-
-# Search engine specific optimizations
+# Specific crawler optimizations
 User-agent: Googlebot
-Crawl-delay: 0
 Allow: /
-Disallow: /search?
-Disallow: /*?utm_*
-Disallow: /*?ref=*
 
 User-agent: Bingbot
+Allow: /
+
+# Sitemap location
+Sitemap: https://calculatorsarcina.com/sitemap.xml
+
+# Crawl rate limit
 Crawl-delay: 1
-Allow: /
-
-User-agent: Slurp
-Crawl-delay: 2
-Allow: /
-
-User-agent: DuckDuckBot
-Crawl-delay: 1
-Allow: /
-
-User-agent: facebookexternalhit
-Crawl-delay: 0
-Allow: /
-
-User-agent: Twitterbot
-Crawl-delay: 0
-Allow: /
-
-# Block problematic bots
-User-agent: AhrefsBot
-Disallow: /
-
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: SemrushBot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-# Allow legitimate SEO tools
-User-agent: MozBot
-Crawl-delay: 2
-Allow: /
-
-# Performance optimization directives
-# Request-rate: 1/10s
-# Visit-time: 0600-2300
-
-# Cache control suggestions
-# Host: calculatorsarcina.com
