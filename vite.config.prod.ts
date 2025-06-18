@@ -18,13 +18,22 @@ export default defineConfig({
     rollupOptions: {
       external: [],
       output: {
-        manualChunks: {
-          'vendor': ['react', 'react-dom'],
-          'query': ['@tanstack/react-query'],
-          'ui': ['@radix-ui/react-slot', '@radix-ui/react-dialog'],
-          'router': ['wouter'],
-          'forms': ['react-hook-form', '@hookform/resolvers'],
-          'utils': ['clsx', 'tailwind-merge', 'date-fns']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('lucide-react')) {
+              return 'icons';
+            }
+            if (id.includes('@tanstack/react-query')) {
+              return 'query';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            return 'vendor';
+          }
         }
       }
     },

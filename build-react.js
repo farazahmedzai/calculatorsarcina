@@ -16,11 +16,12 @@ try {
   // Create directories
   execSync('mkdir -p dist/public', { stdio: 'inherit' });
   
-  // Use production Vite config with optimizations
+  // Use production Vite config with optimizations and faster build
   console.log('Building frontend with Vite (optimized)...');
-  execSync('npx vite build --config vite.config.prod.ts', { 
+  execSync('VITE_BUILD_OPTIMIZATION=true npx vite build --config vite.config.prod.ts --mode production', { 
     stdio: 'inherit',
-    timeout: 300000 // 5 minutes timeout
+    timeout: 120000, // 2 minutes timeout
+    env: { ...process.env, NODE_OPTIONS: '--max-old-space-size=4096' }
   });
   
   // Build backend
