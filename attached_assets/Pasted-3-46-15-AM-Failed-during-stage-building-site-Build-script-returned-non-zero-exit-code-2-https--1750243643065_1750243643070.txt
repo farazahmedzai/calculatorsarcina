@@ -1,0 +1,75 @@
+3:46:15 AM: Failed during stage 'building site': Build script returned non-zero exit code: 2 (https://ntl.fyi/exit-code-2)
+3:46:15 AM: Netlify Build                                                 
+3:46:15 AM: ────────────────────────────────────────────────────────────────
+3:46:15 AM: ​
+3:46:15 AM: ❯ Version
+3:46:15 AM:   @netlify/build 33.4.6
+3:46:15 AM: ​
+3:46:15 AM: ❯ Flags
+3:46:15 AM:   accountId: 6829ebab4e15d2f11c454ddc
+3:46:15 AM:   baseRelDir: true
+3:46:15 AM:   buildId: 685298e663504651ee4f40ad
+3:46:15 AM:   deployId: 685298e663504651ee4f40af
+3:46:15 AM: ​
+3:46:15 AM: ❯ Current directory
+3:46:15 AM:   /opt/build/repo
+3:46:15 AM: ​
+3:46:15 AM: ❯ Config file
+3:46:15 AM:   /opt/build/repo/netlify.toml
+3:46:15 AM: ​
+3:46:15 AM: ❯ Context
+3:46:15 AM:   production
+3:46:15 AM: ​
+3:46:15 AM: build.command from netlify.toml                               
+3:46:15 AM: ────────────────────────────────────────────────────────────────
+3:46:15 AM: ​
+3:46:15 AM: $ npm run build
+3:46:15 AM: > rest-express@1.0.0 build
+3:46:15 AM: > vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist
+3:46:15 AM: sh: 1: vite: not found
+3:46:15 AM: ​
+3:46:15 AM: "build.command" failed                                        
+3:46:15 AM: ────────────────────────────────────────────────────────────────
+3:46:15 AM: ​
+3:46:15 AM:   Error message
+3:46:15 AM:   Command failed with exit code 127: npm run build (https://ntl.fyi/exit-code-127)
+3:46:15 AM: ​
+3:46:15 AM:   Error location
+3:46:15 AM:   In build.command from netlify.toml:
+3:46:15 AM:   npm run build
+3:46:15 AM: ​
+3:46:15 AM:   Resolved config
+3:46:15 AM:   build:
+3:46:15 AM:     command: npm run build
+3:46:15 AM:     commandOrigin: config
+3:46:15 AM:     environment:
+3:46:15 AM:       - NODE_VERSION
+3:46:15 AM:       - NODE_ENV
+3:46:15 AM:     publish: /opt/build/repo/dist
+3:46:15 AM:     publishOrigin: config
+3:46:15 AM:   headers:
+3:46:15 AM:     - for: /assets/*
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: '*.js'
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: '*.css'
+      values:
+        Cache-Control: public, max-age=31536000, immutable
+    - for: /*
+      values:
+        Content-Security-Policy: 'default-src ''self''; script-src ''self'' ''unsafe-inline'' ''unsafe-eval''; style-src ''self'' ''unsafe-inline'' fonts.googleapis.com; font-src ''self'' fonts.gstatic.com; img-src ''self'' data: https:; connect-src ''self'' https:;'
+        Referrer-Policy: strict-origin-when-cross-origin
+        X-Content-Type-Options: nosniff
+        X-Frame-Options: DENY
+        X-XSS-Protection: 1; mode=block
+  headersOrigin: config
+  redirects:
+    - from: /*
+      status: 200
+      to: /index.html
+  redirectsOrigin: config
+3:46:15 AM: Build failed due to a user error: Build script returned non-zero exit code: 2
+3:46:15 AM: Failing build: Failed to build site
+3:46:15 AM: Finished processing build request in 16.016s
