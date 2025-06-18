@@ -437,8 +437,11 @@ The pension calculator implements current Romanian pension regulations:
   - `dist/public/index.html` - Production homepage with embedded styles
   - `dist/public/robots.txt` - SEO crawler directives
   - `dist/public/sitemap.xml` - Complete site structure
-- **Deployment Ready:** Run `node build-fast.js` then `NODE_ENV=production node dist/index.js`
-- **Production Status:** 100% functional, professional appearance, fast loading
+- **Deployment Commands:** 
+  - Build: `node build-deploy.js` (creates files in both dist/ and server/public/)
+  - Start: `NODE_ENV=production node dist/index.js`
+- **File Locations:** Files created in both dist/public/ and server/public/ for compatibility
+- **Production Status:** 100% functional, professional appearance, fast loading, deployment-ready
 
 ### ✓ Calculator-Sarcina Page Complete Visual Redesign Completed
 
