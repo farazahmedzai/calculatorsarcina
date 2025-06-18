@@ -1,6 +1,6 @@
 [build]
   publish = "dist/public"
-  command = "npm install && node simple-build.js"
+  command = "npm install && node netlify-react-build.js"
 
 [build.environment]
   NODE_VERSION = "20"
